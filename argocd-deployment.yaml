@@ -5,10 +5,17 @@ metadata:
   namespace: argocd 
 spec:
   destination: 
-    namespace: gitops-kubernetes
+    namespace: gitops-kubernetes-weather-app
     server: https://kubernetes.default.svc 
   project: default 
   source:
     repoURL: https://github.com/okeyobia/gitops-k8s-deployments-book-weather-app.git
     path: deployment
-    targetRevision: main
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+
+    automated:
+      prune: true
+      selfHeal: true
