@@ -10,7 +10,7 @@ spec:
   project: default 
   source:
     repoURL: https://github.com/okeyobia/gitops-k8s-deployments-book-weather-app.git
-    path: deployment
+    # path: deployment
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
