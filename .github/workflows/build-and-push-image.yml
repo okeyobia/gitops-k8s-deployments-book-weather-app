@@ -6,6 +6,9 @@ on:
       - 'main'
       - 'release'
 
+permissions:
+  contents: write      
+
 jobs:
   push_to_registry:
     name: Build, Push Docker image and Update Deployment
