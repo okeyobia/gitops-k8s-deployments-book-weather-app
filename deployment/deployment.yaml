@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: zurich-weather-app
-        image: okeyobia/gitops-app:549f426
+        image: okeyobia/gitops-app:c03641a
         ports:
         - containerPort: 8080
         # resources:
