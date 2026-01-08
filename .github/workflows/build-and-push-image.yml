@@ -31,7 +31,7 @@ jobs:
       - name: Update deployment manifest
         run: |
           TAG=${{ steps.meta.outputs.tags }}
-          sed -i "s|image: okeyobia/gitops-app:.*|image: ${TAG}|" deployment.yaml
+          sed -i "s|image: okeyobia/gitops-app:.*|image: ${TAG}|g" deployment.yaml
           
       - name: Commit and push changes
         run: |
