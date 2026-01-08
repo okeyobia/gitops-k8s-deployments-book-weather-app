@@ -24,7 +24,22 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: okeyobia/gitops-k8s-deployments:v1
+          images: okeyobia/gitops-app
+          tags: |
+            type=sha,prefix={{branch}}-,format=short
+            
+      - name: Update deployment manifest
+        run: |
+          TAG=${{ steps.meta.outputs.tags }}
+          sed -i "s|image: okeyobia/gitops-app:.*|image: ${TAG}|" deployment.yaml
+          
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add deployment.yaml
+          git commit -m "Update image tag to ${{ steps.meta.outputs.tags }}"
+          git push
           
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
