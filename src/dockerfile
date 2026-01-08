@@ -2,12 +2,13 @@ FROM node:18
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY src/package*.json ./
 
 # Install dependencies with verbose output for debugging
 RUN npm install --verbose
 
-COPY . .
+# COPY . .
+COPY src/ .
 
 EXPOSE 3000
 
